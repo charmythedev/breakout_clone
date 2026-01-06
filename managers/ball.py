@@ -59,7 +59,6 @@ class Ball:
                     bricks.remove(brick)
                     self.superball = True
                     self.timer = 120
-                    self.color = random.choice(brick.colors)
 
 
                 else:

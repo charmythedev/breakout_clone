@@ -2,6 +2,7 @@ import pygame
 from managers.paddles import Paddle
 from managers.ball import Ball
 from managers.bricks import Brick
+import random
 
 pygame.init()
 pygame.font.init()
@@ -9,7 +10,16 @@ font = pygame.font.SysFont('comicsans', 20)
 font2 = pygame.font.SysFont('comicsans', 50)
 lives = 3
 timer = 240
-
+COLORS=  [
+    (255, 0, 0),     # Red
+    (255, 127, 0),   # Orange
+    (255, 255, 0),   # Yellow
+    (0, 255, 0),     # Green
+    (0, 255, 255),   # Cyan
+    (0, 0, 255),     # Blue
+    (75, 0, 130),    # Indigo
+    (148, 0, 211),   # Violet
+]
 
 WINDOW = pygame.display.set_mode((500, 700))
 
@@ -22,8 +32,8 @@ levels = [
     ['XXXXXXXX',
      'XXXXXXXX'],
 
-    ['XXXXXXXXX',
-     '.XXXXXXX.'],
+    ['XXXXXXXX',
+     '.XXXXXX.'],
 
     ['...XX...',
      '..XXXX..',
@@ -74,6 +84,8 @@ while running:
     level_cleared = False
     player.draw()
     ball.draw()
+    if ball.superball:
+        ball.color = random.choice(COLORS)
     for brick in bricks:
         brick.draw(WINDOW)
     if ball.rect.y > 660:
